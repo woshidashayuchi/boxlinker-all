@@ -1,0 +1,7 @@
+krud:
+  image: crosbymichael/golang:latest
+  volumes:
+  - ./:/usr/src
+  ports:
+  - 8080:80
+#docker run -it --name krud -v `pwd`:/usr/src/krud -p 8080:80 crosbymichael/golang bash

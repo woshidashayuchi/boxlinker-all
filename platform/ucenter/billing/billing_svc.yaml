@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: List
+items:
+# billing config
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: billing
+    namespace: boxlinker
+    labels:
+      name: billing
+    annotations:
+      serviceloadbalancer/lb.http: billing.boxlinker.com:8002
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    ports:
+    - port: 8002
+      targetPort: 8002
+
+- apiVersion: v1
+  kind: Endpoints
+  metadata:
+    name: billing
+    namespace: boxlinker
+  subsets:
+    - addresses:
+      - ip: 172.20.1.7
+      ports:
+        - port: 8002

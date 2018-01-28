@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# chkconfig: 345 80 05
+# description: start ceph bcast service
+
+
+ceph_start()
+{
+    SERVER_FILE='/ceph/ceph/rpcserver/ceph_bcastserver.pyc'
+    if [ -f "$SERVER_FILE" ]; then
+        CEPH_SERVER='python /ceph/ceph/rpcserver/ceph_bcastserver.pyc'
+    else
+        SERVER_FILE='/ceph/ceph/rpcserver/ceph_bcastserver.py'
+        if [ -f "$SERVER_FILE" ]; then
+            CEPH_SERVER='python /ceph/ceph/rpcserver/ceph_bcastserver.py'
+        else
+            echo 'ceph bcastserver file not exists'
+            exit 1
+        fi
+    fi
+
+    ceph_check=$(ps -ef | grep -w 'ceph' | grep 'ceph_bcastserver' | grep -v 'storage' | wc -l)
+    if [ $ceph_check -eq 0 ]; then
+        $CEPH_SERVER &> /dev/null &
+        if [ $? -eq 0 ]; then
+            echo 'service ceph_server start OK'
+            exit 0
+        else
+    	    echo 'service ceph_server start failure'
+            exit 1
+        fi
+    else
+  	echo 'service ceph_server is already running'
+    fi
+}
+
+
+ceph_stop()
+{
+    ceph_check=$(ps -ef | grep -w 'ceph' | grep 'ceph_bcastserver' | grep -v 'storage' | wc -l)
+    if [ $ceph_check -eq 0 ]; then
+        echo 'service ceph_server not runing'
+    else
+        pid=$(ps -ef | grep -w 'ceph' | grep 'ceph_bcastserver' | grep -v 'storage' | awk '{print $2}')
+        kill $pid
+        if [ $? -ne 0 ]; then
+            kill -9 $pid
+        fi
+        echo 'service ceph_server stop OK'
+    fi
+}
+
+
+ceph_restart()
+{
+    ceph_stop
+    sleep 1s
+    ceph_start
+}
+
+
+ceph_status()
+{
+    ceph_check=$(ps -ef | grep -w 'ceph' | grep 'ceph_bcastserver' | grep -v 'storage' | wc -l)
+    if [ $ceph_check -eq 0 ]; then
+        echo 'service ceph_server not runing'
+    else
+        echo 'service ceph_server is runing'
+    fi
+}
+
+
+case "$1" in
+    start)
+        ceph_start
+        ;;
+    stop)
+        ceph_stop
+        ;;
+    restart)
+        ceph_restart
+        ;;
+    status)
+        ceph_status
+        ;;
+    *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+esac

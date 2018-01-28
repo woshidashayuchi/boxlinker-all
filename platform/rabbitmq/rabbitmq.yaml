@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: List
+items:
+# rabbitmq config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: rabbitmq
+    namespace: boxlinker
+    labels:
+      name: rabbitmq
+      rc-krud: "boxlinker_centos-rabbitmq"
+  spec:
+    replicas: 1
+    selector:
+      name: rabbitmq
+    template:
+      metadata:
+        labels:
+          name: rabbitmq
+          logs: boxlinker-rabbitmq
+      spec:
+        nodeSelector:
+          role: system
+        imagePullSecrets:
+        - name: registry-key
+        containers:
+        - name: rabbitmq
+          imagePullPolicy: Always
+          image: index.boxlinker.com/boxlinker/centos-rabbitmq:1.0.1
+          ports:
+          - containerPort: 5672
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: rabbitmq
+    namespace: boxlinker
+    labels:
+      name: rabbitmq
+    annotations:
+      serviceloadbalancer/lb.tcp: "30001:5672"
+      serviceloadbalancer/lb.node: "main"
+  spec:
+    selector:
+      name: rabbitmq
+    sessionAffinity: ClientIP
+    ports:
+    - name: rabbitmq
+      protocol: TCP
+      port: 5672
+      targetPort: 5672

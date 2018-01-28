@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: List
+items:
+# ucenter config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: ucenter-api
+    namespace: boxlinker
+    labels:
+      name: ucenter-api
+      rc-krud: "boxlinker_centos-ucenter"
+  spec:
+    replicas: 1
+    selector:
+      name: ucenter-api
+    template:
+      metadata:
+        labels:
+          name: ucenter-api
+          logs: boxlinker-ucenter-api
+      spec:
+        nodeSelector:
+          role: system
+        imagePullSecrets:
+        - name: registry-key
+        containers:
+        - name: ucenter-api
+          imagePullPolicy: Always
+          image: index.boxlinker.com/boxlinker/centos-ucenter:1.0.1
+          ports:
+          - containerPort: 8001
+          env:
+          - name: DB_SERVER01
+            value: database
+          - name: DB_SERVER02
+            value: database
+          - name: MQ_SERVER01
+            value: rabbitmq
+          - name: MQ_SERVER02
+            value: rabbitmq
+          - name: BILLING_API
+            value: http://billing:8001
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ucenter-api
+    namespace: boxlinker
+    labels:
+      name: ucenter-api
+    annotations:
+      serviceloadbalancer/lb.http: ucenter.boxlinker.com:8001
+      serviceloadbalancer/lb.node: main
+  spec:
+    selector:
+      name: ucenter-api
+    sessionAffinity: ClientIP
+    ports:
+    - name: rest-api
+      port: 8001
+      targetPort: 8001

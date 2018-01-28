@@ -1,0 +1,9 @@
+version: '2'
+services:
+  email:
+    image: index.boxlinker.com/library/alpine-node:latest
+    ports:
+    - "3000:3000"
+    volumes:
+    - "./:/app"
+    command: node /app/index.js

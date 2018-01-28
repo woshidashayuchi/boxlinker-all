@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-db
+  namespace: boxlinker
+  labels:
+    app: auth-db
+  annotations:
+    serviceloadbalancer/lb.tcp: "30001:3306"
+    serviceloadbalancer/lb.node: main
+spec:
+  ports:
+  - port: 3306
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: auth-db
+  namespace: boxlinker
+subsets:
+- ports:
+  - port: 3306
+  addresses:
+  - ip: "192.168.1.6"

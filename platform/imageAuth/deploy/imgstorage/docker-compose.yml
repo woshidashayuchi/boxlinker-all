@@ -1,0 +1,7 @@
+version: '2'
+services:
+  mysql:
+    image: index.boxlinker.com/boxlinker/imgstorage:test
+    restart: always
+    ports:
+    - 8765:8765

@@ -1,0 +1,19 @@
+postgres:
+  image: index.boxlinker.com/boxlinker/postgres
+  ports:
+  - 5432:5432
+auto-build:
+  image: index.boxlinker.com/boxlinker/auth-build:latest
+  ports:
+  - 8080:8080
+  links:
+  - postgres:postgres
+  command: -D
+  environment:
+  - DATABASE_URL=postgres://postgres:postgres@postgres/postgres?sslmode=disable
+  - LOGGER=oss://oss-cn-beijing.aliyuncs.com
+  - OSS_ACCESS_KEY_ID=LTAIRgaFkdGaZlVM
+  - OSS_ACCESS_KEY_SECRET=EGv0wHzPE5cv97INkIQ4vYdqyYzxnH
+  - OSS_BUCKET_NAME=boxlinker-logs
+  - REGISTRY_HOST=index.boxlinker.com
+  - BASE_URL=http://boxlinker.com

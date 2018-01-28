@@ -1,0 +1,54 @@
+
+PUBLIC_ARG = --restart=always
+
+
+
+USER_IMAGE = index.boxlinker.com/liuzhangpei/python:2.7.10-ubuntu-flask_sup
+USER_NAME = usercenter
+USER_SRC = /root/authServer:/PythonTools/authServer
+
+
+
+MYSQL_IMAGE = index.boxlinker.com/boxlinker/user_mysql:latest
+MYSQL_NAME = mysql
+MYSQL_DATA = /data/database/:/var/lib/mysql
+MYSQL_ENV = MYSQL_ROOT_PASSWORD=root123admin
+
+user-start:
+	docker run -d -p 80:80 ${PUBLIC_ARG} --name=${USER_NAME} --link ${MYSQL_NAME}:mysql -v ${USER_SRC} ${USER_IMAGE}
+
+user-stop:
+	docker stop ${USER_NAME} || true
+
+
+user-clean: user-stop
+	docker rm -f ${USER_NAME} || true
+
+
+
+user-restart: user-clean user-start
+
+
+
+
+mysql-start:
+	docker run --env ${MYSQL_ENV} -d -p 3306:3306 ${PUBLIC_ARG} --name=${MYSQL_NAME} -v ${MYSQL_DATA} ${MYSQL_IMAGE}
+
+mysql-stop:
+	docker stop ${MYSQL_NAME} || true
+
+mysql-clean: mysql-stop
+	docker rm -f ${MYSQL_NAME} || true
+
+mysql-restart: mysql-clean mysql-start
+all-stop: user-stop mysql-stop
+
+
+all-clean: user-clean mysql-clean
+
+
+
+all-start: mysql-start user-start
+
+
+all-restart:  mysql-restart user-restart

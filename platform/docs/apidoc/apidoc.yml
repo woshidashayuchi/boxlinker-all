@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: apidoc
+    namespace: boxlinker
+    annotations:
+      serviceloadbalancer/lb.http: apidoc.boxlinker.com:80
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    selector:
+      component: apidoc
+    ports:
+    - port: 80
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: apidoc
+    namespace: boxlinker
+    labels:
+      component: apidoc
+      rc-krud: boxlinker_nginx-apidoc
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        name: apidoc
+        namespace: boxlinker
+        labels:
+          name: apidoc
+          component: apidoc
+      spec:
+        nodeSelector:
+          role: node
+        imagePullSecrets:
+        - name: registry-key
+        containers:
+        - name: apidoct1
+          image: index.boxlinker.com/boxlinker/nginx-apidoc:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+

@@ -1,0 +1,11 @@
+{
+
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  },
+  "header": {
+    "title": "Data table design",
+    "filename": "models/orgs.md"
+  }
+}

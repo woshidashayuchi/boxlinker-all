@@ -1,0 +1,9 @@
+http.host: 0.0.0.0
+
+# indices.cache.filter.size: 512mb
+
+# index.cache.field.max_size: 10000
+# index.cache.field.expire: 10m
+# index.cache.field.type: soft
+
+indices.fielddata.cache.size: 50mb

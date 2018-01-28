@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: app-status
+  namespace: boxlinker
+  labels:
+    component: app-status
+    rc-krud: boxlinker_centos-appstatus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: app-status
+      namespace: boxlinker
+      labels:
+        logs: boxlinker-app-status
+        name: app-status
+        component: app-status
+    spec:
+      nodeSelector:
+        role: system
+      containers:
+      - name: app-status
+        image: index.boxlinker.com/boxlinker/centos-appstatus:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000

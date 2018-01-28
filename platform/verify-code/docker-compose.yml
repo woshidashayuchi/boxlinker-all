@@ -1,0 +1,17 @@
+version: '2'
+services:
+  verify-code:
+    image: index.boxlinker.com/boxlinker/verify-code:1.0.3
+    ports:
+    - "3000:3000"
+    volumes:
+    - "./:/app"
+    command: node index.js
+    environment:
+    - REDIS_HOST=redis
+    links:
+    - redis:redis
+  redis:
+    image: index.boxlinker.com/library/redis
+    ports:
+    - "6379:6379"

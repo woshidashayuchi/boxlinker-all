@@ -1,0 +1,50 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "name": "rabbitmq01",
+        "namespace": "boxlinker",
+        "labels": {
+            "name": "rabbitmq01",
+            "logs": "boxlinker-rabbitmq01"
+            }
+        },
+    "spec": {
+        "nodeSelector" : {
+            "role": "user"
+            },
+        "imagePullSecrets": [ 
+            {
+                "name": "registry-key"
+            } 
+        ],
+        "containers": [
+            {
+                "name": "rabbitmq01",
+                "imagePullPolicy": "Always",
+                "image": "index.boxlinker.com/boxlinker/centos-rabbitmq-first:1.0.1",
+                "ports": [
+                             {
+                             "containerPort": 5672,
+                             "containerPort": 4369,
+                             "containerPort": 25672
+                             }
+                 ],
+                "env": [
+                             {
+                                 "name": "rabbitmq01",
+                                 "value": "rabbitmq01"
+                             },
+                             {
+                                 "name": "rabbitmq02",
+                                 "value": "rabbitmq02"
+                             },
+                             {
+                                 "name": "rabbitmq03",
+                                 "value": "rabbitmq03"
+                             }
+                       ]
+            }
+        ]
+    }
+}

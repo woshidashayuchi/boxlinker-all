@@ -1,0 +1,7 @@
+{
+  "name": "验证码",
+  "version": "1.0.3",
+  "description": "获取验证码图片,验证",
+  "title": "验证码",
+  "url":"http://verify-code.boxlinker.com/api/v1.0"
+}

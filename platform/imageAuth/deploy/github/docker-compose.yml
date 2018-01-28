@@ -1,0 +1,5 @@
+version: '2'
+services:
+  gitoauth:
+    image: index.boxlinker.com/boxlinker/gitoauth:latest
+    restart: always

@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: List
+items:
+# billing service config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: billing
+    namespace: boxlinker
+    labels:
+      name: billing
+      rc-krud: "boxlinker_centos-billing"
+  spec:
+    replicas: 1
+    selector:
+      name: billing
+    template:
+      metadata:
+        labels:
+          name: billing
+      spec:
+        nodeSelector:
+          role: system
+        imagePullSecrets:
+        - name: registry-key
+        containers:
+        - name: billing
+          imagePullPolicy: Always
+          image: index.boxlinker.com/boxlinker/centos-billing:1.0.1
+          ports:
+          - containerPort: 8001
+          env:
+          - name: DB_SERVER01
+            value: database
+          - name: DB_SERVER02
+            value: database
+          - name: MQ_SERVER01
+            value: rabbitmq
+          - name: MQ_SERVER02
+            value: rabbitmq
+          - name: TOKEN_AUTH_API
+            value: https://auth.boxlinker.com/api/v1.0/usercenter/tokens
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: billing
+    namespace: boxlinker
+    labels:
+      name: billing
+    annotations:
+      serviceloadbalancer/lb.http: billing.boxlinker.com:8001
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    selector:
+      name: billing
+    ports:
+    - name: rest-api
+      port: 8001
+      targetPort: 8001

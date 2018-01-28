@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: List
+items:
+# kibana config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: kibana
+    namespace: boxlinker
+    labels:
+      component: elk
+      role: kibana
+  spec:
+    replicas: 1
+    selector:
+      component: elk
+      role: kibana
+    template:
+      metadata:
+        labels:
+          component: elk
+          role: kibana
+      spec:
+        nodeSelector:
+          role: system
+        containers:
+        - name: kibana
+          image: index.boxlinker.com/boxlinker/kibana:latest
+          env:
+          - name: ELASTICSEARCH_URL
+            value: "http://elasticsearch.boxlinker.svc:9200"
+          ports:
+          - containerPort: 5601
+            name: http
+            protocol: TCP
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: kibana
+    namespace: boxlinker
+    labels:
+      component: elk
+      role: kibana
+    annotations:
+      serviceloadbalancer/lb.http: kibana.boxlinker.com:5601
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    selector:
+      component: elk
+      role: kibana
+    ports:
+    - name: http
+      port: 5601
+      protocol: TCP

@@ -1,0 +1,29 @@
+
+.root{
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+
+}
+.root>li{
+  display: inline-block;
+  margin-right: 10px;
+}
+.root>li>a{
+  color: #333;
+}
+.root>li>a>span{
+  color: #666;
+  font-size:15px;
+  font-weight:bold;
+  position: relative;
+  top:1px;
+}
+
+.root>li>a.selected{
+  color: #a7a7a7;
+}
+.root>li>a.selected:hover{
+  color: #a7a7a7;
+}
+

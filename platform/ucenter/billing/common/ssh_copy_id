@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+
+set NUMBER $argc
+set host_ip [lindex $argv 0]
+set password [lindex $argv 1]
+
+set timeout 10
+
+spawn ssh-copy-id -i /root/.ssh/id_dsa.pub root@$host_ip
+expect {
+       "(yes/no)" { send "yes\r"; exp_continue }
+       "*password:" { send "$password\r" }
+       }
+
+expect {
+       "*password:" { exit 2 }
+       }
+expect eof
+

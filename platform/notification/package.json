@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=5.0 <7",
+    "npm": ">=3.3 <4"
+  },
+  "name": "boxl-notification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "amqp": "^0.2.6",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node index.js"
+  },
+  "babel": {
+    "presets": [
+      "node5",
+      "stage-0"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "rewire"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "globals": {
+      "__DEV__": true
+    },
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "no-confusing-arrow": 0,
+      "react/jsx-quotes": 0,
+      "jsx-quotes": [
+        2,
+        "prefer-double"
+      ]
+    }
+  },
+  "author": "Eric Cai <330785652@qq.com> (http://ericai.com)",
+  "license": "ISC"
+}

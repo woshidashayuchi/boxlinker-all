@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: database
+    namespace: boxlinker
+    labels:
+        name: database
+    annotations:
+        serviceloadbalancer/lb.tcp: "30000:3306"
+        serviceloadbalancer/lb.node: "main"
+spec:
+    selector:
+      db: db-cluster
+    sessionAffinity: ClientIP
+    ports:
+    - name: mariadb
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

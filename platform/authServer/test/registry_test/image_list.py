@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+"""
+@version: 0.1
+@author: liuzhangpei
+@contact: liuzhangpei@126.com
+@site: http://www.livenowhy.com
+@time: 16/9/28 18:40
+"""
+#
+# dd = {
+#     "boxlinker/0928":,
+#     "boxlinker/alpine": "docker hub alpine 基础镜像",
+#     "boxlinker/boxl-notification":,
+#     "boxlinker/centos",
+#     "boxlinker/centos-base",
+#     "boxlinker/centos-k8sapi": "k8s-api使用版",
+#     "boxlinker/centos-k8sapis": "k8s过时版",
+#     "boxlinker/centos-logs",
+#     "boxlinker/centos-logtest",
+#     "boxlinker/centos-mariadb",
+#     "boxlinker/centos-rabbitmq",
+#     "boxlinker/centos-storage",
+#     "boxlinker/centos7-base",
+#     "boxlinker/centos7-k8sapi": "k8s过时版",
+#     "boxlinker/chat-demo",
+#     "boxlinker/docker-elasticsearch-kubernetes",
+#     "boxlinker/docker-tes",
+#     "boxlinker/fluentd-kubernetes",
+#     "boxlinker/heapster",
+#     "boxlinker/heapster_grafana",
+#     "boxlinker/heapster_influxdb",
+#     "boxlinker/kibana",
+#     "boxlinker/krud",
+#     "boxlinker/mariadb-base",
+#     "boxlinker/nginx-apidoc": "restful api apidoc集合",
+#     "boxlinker/nginx-k8sapidoc": "k8s api apidoc过时版",
+#     "boxlinker/python",
+#     "boxlinker/servicelb",
+#     "boxlinker/test",
+#     "boxlinker/test-k8sapi": "k8sapi过时版",
+#     "boxlinker/test-k8sapi.1.0.0": "k8sapi过时版",
+#     "boxlinker/test-k8sapis": "k8sapi过时版",
+#     "boxlinker/tttt-k8sapi": "k8sapi过时版",
+#     "boxlinker/ubuntu",
+#     "boxlinker/web",
+#     "boxlinker/webhook_test_test",
+#     "boxlinker/zss",
+#     "cabernety/aaaaaa",
+#     "cabernety/building-test",
+#     "cabernety/chat-demo",
+#     "cabernety/demo3",
+#     "cabernety/nginx",
+#     "google_containers/busybox",
+#     "google_containers/etcd",
+#     "google_containers/kube2sky",
+#     "google_containers/pause",
+#     "google_containers/skydns",
+#     "library/alpine-node",
+#     "library/building-test",
+#     "library/mysql",
+#     "library/nginx",
+#     "liuzhangpei/alpine",
+#     "liuzhangpei/python",
+#     "liuzhangpei/pythontest",
+#     "liuzhangpei/pythontest2",
+#     "lxf/centos-k8test",
+#     "phpmyadmin/phpmyadmin",
+#     "wangjian/acc",
+#     "wangjian/admin"}

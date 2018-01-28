@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: verify-code
+    namespace: boxlinker
+    labels:
+      component: verify-code
+    annotations:
+      serviceloadbalancer/lb.http: "verify-code.boxlinker.com:3000"
+      serviceloadbalancer/lb.node: "main"
+  spec:
+    selector:
+      component: verify-code
+    ports:
+    - port: 3000
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: verify-code
+    namespace: boxlinker
+    labels:
+      component: verify-code
+      rc-krud: "boxlinker_verify-code"
+  spec:
+    replicas: 1
+    selector:
+      component: verify-code
+    template:
+      metadata:
+        name: verify-code
+        labels:
+          component: verify-code
+      spec:
+        nodeSelector:
+          role: node
+        imagePullSecrets:
+        - name: RegistryWeb-key
+        containers:
+        - name: fe
+          image: index.boxlinker.com/boxlinker/verify-code:1.0.3
+          imagePullPolicy: Always
+          env:
+          - name: REDIS_HOST
+            value: verify-code-redis.boxlinker.svc
+          ports:
+          - containerPort: 3000
+            name: pro
+# redis
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: verify-code-redis
+    namespace: boxlinker
+    labels:
+      component: verify-code-redis
+  spec:
+    selector:
+      component: verify-code-redis
+    ports:
+    - port: 6379
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: verify-code-redis
+    namespace: boxlinker
+    labels:
+      component: verify-code-redis
+  spec:
+    replicas: 1
+    selector:
+      component: verify-code-redis
+    template:
+      metadata:
+        name: verify-code-redis
+        labels:
+          component: verify-code-redis
+      spec:
+        nodeSelector:
+          role: node
+        imagePullSecrets:
+        - name: RegistryWeb-key
+        containers:
+        - name: fe
+          image: index.boxlinker.com/library/redis
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 6379
+            name: pro
+

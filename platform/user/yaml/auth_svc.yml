@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth
+  namespace: boxlinker
+  labels:
+    app: auth
+  annotations:
+    serviceloadbalancer/lb.http: auth.boxlinker.com:8080
+    serviceloadbalancer/lb.node: main
+spec:
+  ports:
+  - port: 8080
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: auth
+  namespace: boxlinker
+subsets:
+- ports:
+  - port: 8080
+  addresses:
+  - ip: "192.168.1.6"

@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: List
+items:
+# elasticsearch config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: elasticsearch
+    namespace: boxlinker
+    labels:
+      component: elasticsearch
+      role: elasticsearch
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        namespace: boxlinker
+        labels:
+          component: elasticsearch
+          role: elasticsearch
+      spec:
+        nodeSelector:
+          role: system
+        containers:
+        - name: elasticsearch
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
+          image: index.boxlinker.com/boxlinker/elasticsearch:1.0.1
+          env:
+          - name: KUBERNETES_CA_CERTIFICATE_FILE
+            value: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: "CLUSTER_NAME"
+            value: "myesdb"
+          - name: NODE_MASTER
+            value: "true"
+          - name: NODE_DATA
+            value: "false"
+          - name: HTTP_ENABLE
+            value: "false"
+          ports:
+          - containerPort: 9200
+            name: db
+            protocol: TCP
+          - containerPort: 9300
+            name: transport
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /usr/share/elasticsearch/data
+            name: storage
+        volumes:
+        - name: storage
+          rbd:
+            monitors:
+            - "192.168.1.5:5000"
+            - "192.168.1.8:5000"
+            - "192.168.1.9:5000"
+            pool: pool_hdd
+            image: boxlinker_elasticsearch
+            user: admin
+            keyring: /etc/ceph/keyring
+#           secretRef:
+#             name: ceph-secret
+            fsType: xfs
+            readOnly: false
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: elasticsearch
+    namespace: boxlinker
+    annotations:
+      serviceloadbalancer/lb.http: es.boxlinker.com:9200
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+    labels:
+      component: elasticsearch
+      role: elasticsearch
+  spec:
+    selector:
+      component: elasticsearch
+      role: elasticsearch
+    ports:
+    - name: http
+      port: 9200
+      protocol: TCP

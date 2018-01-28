@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "emailjs": "^1.0.8",
+    "express": "^4.14.0",
+    "isemail": "^2.2.1",
+    "nodemailer": "^2.6.4",
+    "nodemailer-smtp-pool": "^2.8.2"
+  }
+}

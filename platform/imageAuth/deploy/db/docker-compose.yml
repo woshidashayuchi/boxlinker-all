@@ -1,0 +1,16 @@
+version: '2'
+services:
+  mysql:
+    image: index.boxlinker.com/boxlinker/user_mysql:latest
+    restart: always
+    volumes:
+    - /data/database/:/var/lib/mysql
+    ports:
+    - 3306:3306
+    environment:
+    - MYSQL_ROOT_PASSWORD=root123admin
+  redis:
+    image: index.boxlinker.com/boxlinker/redis
+    restart: always
+    ports:
+    - 6379:6379

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: rabbitmq02
+    namespace: boxlinker
+    labels:
+        name: rabbitmq02
+spec:
+    selector:
+        name: rabbitmq02
+    ports:
+    - name: rabbitmq
+      port: 5672
+      targetPort: 5672
+    - name: sync
+      port: 4369
+      targetPort: 4369
+    - name: disc
+      port: 25672
+      targetPort: 25672

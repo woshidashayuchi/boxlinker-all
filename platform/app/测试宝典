@@ -1,0 +1,68 @@
+**登录获取token:
+    curl -X POST -d '{"user_name":"admin","password":"ucenter@2017"}' https://ucenter.boxlinker.com/api/v1.0/ucenter/tokens
+
+**日志查询:
+    curl -X GET -H 'token: 24e7c5b4-9cf3-42ff-9666-4a3cb6878c57' https://log.boxlinker.com/api/v1.0/logs/labels/boxlinker-appstatus-service
+
+
+
+**查询数据库集群状态是否正常
+        show status like 'wsrep_%';
+
+**rbd锁管理
+
+        参考文档： http://docs.ceph.com/docs/master/man/8/rbd/
+
+        查看锁
+
+        # rbd lock list pool_hdd/database03disk01
+        There is 1 exclusive lock on this image.
+        Locker      ID                              Address
+        client.5667 kubelet_lock_magic_iz25pjirrl1z 192.168.1.12:0/1023030
+        删除锁
+
+        # rbd lock remove pool_hdd/database03disk01 kubelet_lock_magic_iz25pjirrl1z client.5667
+
+        注意：加锁后的存储卷不能被删除。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################
+**安装snmp:
+  yum install -y net-snmp*
+  启动:
+  service snmpd start(提示：Starting snmpd: [  OK  ]，则启动snmp服务成功)
+
+
+ create table device_alarming (
+ip varchar(32),
+cpu_used float,
+cpu_wa float,
+mem_used float,
+network text,
+disk_used text,
+lb text,
+create_time datetime DEFAULT CURRENT_TIMESTAMP)
+
+
+
+redis-server
+mongod

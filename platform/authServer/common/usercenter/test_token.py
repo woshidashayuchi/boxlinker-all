@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+"""
+@version: 0.1
+@author: liuzhangpei
+@contact: liuzhangpei@126.com
+@site: http://www.livenowhy.com
+@time: 16/10/25 10:20
+"""
+from authServer.pyTools.token.token import get_payload
+
+print get_payload(token="eyJ1aWQiOiAiYzFhZjllNjYtZTg0Ny0zYmZkLWI4ZmQtNjdkNTQ0N2M4MzJhIiwgInVzZXJfb3JhZyI6ICJib3hsaW5rZXIiLCAidG9rZW5pZCI6ICJmN2Q1MzNmY2VlM2I4YWZiZTc2ZDA1MzIiLCAidXNlcl91dWlkIjogImMxYWY5ZTY2LWU4NDctM2JmZC1iOGZkLTY3ZDU0NDdjODMyYSIsICJleHBpcmVzIjogMTQ4MDM1NTY0Ni4zMjM0NywgInVzZXJfcm9sZSI6ICIxIiwgInVzZXJfaXAiOiAiMTI3LjAuMC4xIiwgInVzZXJfb3JnYSI6ICJib3hsaW5rZXIiLCAicm9sZV91dWlkIjogIjIwMCIsICJvcmdhX3V1aWQiOiAiYzFhZjllNjYtZTg0Ny0zYmZkLWI4ZmQtNjdkNTQ0N2M4MzJhIiwgInNhbHQiOiAiMzU0MzkxNjk1OWU2OTAzZjIwM2Q0ZjA0IiwgImVtYWlsIjogImJveGxpbmtlckBib3hsaW5rZXIuY29tIiwgInVzZXJfbmFtZSI6ICJib3hsaW5rZXIifcwWArNkdbL16A8PCu2BWU==")

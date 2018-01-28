@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: List
+items:
+# security config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: security-api
+    namespace: boxlinker
+    labels:
+      name: security-api
+      rc-krud: "boxlinker_security"
+  spec:
+    replicas: 1
+    selector:
+      name: security-api
+    template:
+      metadata:
+        labels:
+          name: security-api
+          logs: boxlinker-security-api
+      spec:
+        nodeSelector:
+          role: system
+        imagePullSecrets:
+        - name: registry-key
+        containers:
+        - name: security-api
+          imagePullPolicy: Always
+          image: index.boxlinker.com/boxlinker/security:1.0.1
+          ports:
+          - containerPort: 8001
+          env:
+          - name: DB_SERVER01
+            value: database
+          - name: DB_SERVER02
+            value: database
+          - name: MQ_SERVER01
+            value: rabbitmq
+          - name: MQ_SERVER02
+            value: rabbitmq
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: security-api
+    namespace: boxlinker
+    labels:
+      name: security-api
+    annotations:
+      serviceloadbalancer/lb.http: security.boxlinker.com:8001
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    selector:
+      name: security-api
+    sessionAffinity: ClientIP
+    ports:
+    - name: rest-api
+      port: 8001
+      targetPort: 8001

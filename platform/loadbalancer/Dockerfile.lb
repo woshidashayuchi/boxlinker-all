@@ -1,0 +1,11 @@
+
+FROM index.boxlinker.com/boxlinker/lb-base:latest
+
+ADD haproxy.cfg /etc/haproxy/haproxy.cfg
+ADD lb lb
+ADD lb.go lb.go
+ADD template.cfg template.cfg
+ADD loadbalancer.json loadbalancer.json
+ADD haproxy_reload haproxy_reload
+
+RUN touch /var/run/haproxy.pid

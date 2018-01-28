@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<
+    function fetchLogin(name,password){
+  let url = "http://auth.boxlinker.com/api/v1.0/usercenter/tokens";
+  let uName = name.val();
+  let $userTip = $("#userTip");
+  let uPassword = password.val();
+  let data = JSON.stringify({
+    user_name:uName,
+    pass_word:uPassword
+  });
+  console.log(data);
+  $.ajax({
+    type:"POST",
+    url:url,
+    data:data,
+    dataType: "json",
+    success:function(res){
+      $.cookie("_at",res.result);
+      if(res.status == 0){
+      }else{
+        name.parents(".entryItem").addClass("entryItemError");
+        $userTip.text(res.msg);
+      }
+      console.log(res);
+    }
+  });
+}
+</head>
+<body>
+
+
+
+</body>
+</html>

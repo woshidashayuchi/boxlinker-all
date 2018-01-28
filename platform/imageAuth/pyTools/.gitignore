@@ -1,0 +1,14 @@
+*.pyc
+*.jpg
+
+
+tools/codeString.py
+tools/mysqloperate.py
+tools/MultiThread.py
+tools/ssh_scp.py
+
+
+imagetools/download.py
+imagetools/filetools.py
+imagetools/qrCode.py
+imagetools/readme.md

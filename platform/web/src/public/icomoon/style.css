@@ -1,0 +1,183 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?7z2b6k');
+  src:  url('fonts/icomoon.eot?7z2b6k#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?7z2b6k') format('truetype'),
+    url('fonts/icomoon.woff?7z2b6k') format('woff'),
+    url('fonts/icomoon.svg?7z2b6k#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before {
+  content: "\eab0";
+}
+.icon-email:before {
+  content: "\e932";
+}
+.icon-mima:before {
+  content: "\e931";
+}
+.icon-username:before {
+  content: "\e930";
+}
+.icon-back:before {
+  content: "\e92d";
+}
+.icon-sanjiao:before {
+  content: "\e92e";
+}
+.icon-sanjiaoright:before {
+  content: "\e92f";
+}
+.icon-date:before {
+  content: "\e92c";
+}
+.icon-refresh:before {
+  content: "\e92b";
+}
+.icon-xdms:before {
+  content: "\e926";
+}
+.icon-perinfor:before {
+  content: "\e927";
+}
+.icon-myaccount:before {
+  content: "\e928";
+}
+.icon-certmanage:before {
+  content: "\e929";
+}
+.icon-acmanage:before {
+  content: "\e92a";
+}
+.icon-link:before {
+  content: "\e925";
+}
+.icon-withdraw:before {
+  content: "\e923";
+}
+.icon-home:before {
+  content: "\e924";
+}
+.icon-select:before {
+  content: "\e922";
+}
+.icon-top:before {
+  content: "\e920";
+}
+.icon-delete:before {
+  content: "\e921";
+}
+.icon-fail:before {
+  content: "\e91d";
+}
+.icon-finish:before {
+  content: "\e91e";
+}
+.icon-right:before {
+  content: "\e91f";
+}
+.icon-collection:before {
+  content: "\e91b";
+}
+.icon-collectctd:before {
+  content: "\e91a";
+}
+.icon-operation:before {
+  content: "\e91c";
+}
+.icon-storagemanag:before {
+  content: "\e900";
+}
+.icon-servicelist:before {
+  content: "\e901";
+}
+.icon-servicecenter:before {
+  content: "\e902";
+}
+.icon-New-service:before {
+  content: "\e903";
+}
+.icon-mymirror:before {
+  content: "\e904";
+}
+.icon-mirrorhouse:before {
+  content: "\e905";
+}
+.icon-mirrorceer:before {
+  content: "\e906";
+}
+.icon-login:before {
+  content: "\e907";
+}
+.icon-formmirror:before {
+  content: "\e908";
+}
+.icon-console:before {
+  content: "\e909";
+}
+.icon-codeconstruct:before {
+  content: "\e90a";
+}
+.icon-version:before {
+  content: "\e90b";
+}
+.icon-service:before {
+  content: "\e90c";
+}
+.icon-release:before {
+  content: "\e90d";
+}
+.icon-project:before {
+  content: "\e90e";
+}
+.icon-overview:before {
+  content: "\e90f";
+}
+.icon-new:before {
+  content: "\e910";
+}
+.icon-monitor:before {
+  content: "\e911";
+}
+.icon-General:before {
+  content: "\e912";
+}
+.icon-frontpage:before {
+  content: "\e913";
+}
+.icon-domainname:before {
+  content: "\e914";
+}
+.icon-containerinstan:before {
+  content: "\e915";
+}
+.icon-containerconfig:before {
+  content: "\e916";
+}
+.icon-buildlog:before {
+  content: "\e917";
+}
+.icon-allocation:before {
+  content: "\e918";
+}
+.icon-advancedset:before {
+  content: "\e919";
+}
+

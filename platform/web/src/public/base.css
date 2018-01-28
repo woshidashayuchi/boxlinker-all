@@ -1,0 +1,33 @@
+@charset "utf-8";
+html, body, h1, h2, h3, h4, h5, h6, div, ol, ul, li, dl, dt, dd, p, textarea, input, select, option, form, tr, th, td, img, em, i, var, strong { margin: 0; padding: 0; font-family:"微软雅黑", Tahoma, Arial, sans-serif; }
+body, html { position: relative; width: 100%;}
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+li { list-style: none;vertical-align:middle; }
+img { border: 0; vertical-align: middle }
+table { border-collapse: collapse; border-spacing: 0 ;width:100%;}
+p { word-wrap: break-word }
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+a, textarea, input { outline: 0 }
+input{outline:none;}
+textarea { overflow: auto; resize: none }
+em, i { font-style: normal }
+em { font-style: normal; }
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+.clearfix:before,
+.clearfix:after {
+  content:"";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+  overflow:hidden;
+}
+.clearfix {
+  zoom:1; /* IE < 8 */
+}

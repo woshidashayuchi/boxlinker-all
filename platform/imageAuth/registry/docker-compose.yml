@@ -1,0 +1,21 @@
+version: '2'
+services:
+  nginx:
+    image: index.boxlinker.com/boxlinker/nginx-true:latest
+    links:
+    - registry:registry
+    volumes:
+    - ./registry/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+    - 80:80
+    - 443:443
+  registry:
+    image: registry:2.5.0
+    restart: always
+    volumes:
+    - "/data/registry:/var/lib/registry"
+    - "./registry/config.yml:/etc/docker/registry/config.yml"
+    - "./ssl:/ssl"
+    - "/etc/hosts:/etc/hosts"
+    ports:
+    - 5000:5000

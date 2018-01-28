@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" name="qq">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">	
+
+  function ddd (){
+	 $.ajax({
+	   type: "get",
+	   url: "http://0.0.0.0:8081/oauth/relategithub",
+	   headers : {token: 'eyJ1aWQiOiAzLCAidXNlcl9vcmFnIjogImJveGxpbmtlciIsICJ0b2tlbmlkIjogIjUyOTY5NTMwZmI2ZmIyMDk5NzU2MWRkOCIsICJ1c2VyX25hbWUiOiAiYm94bGlua2VyIiwgImV4cGlyZXMiOiAxNDc1Mzg5NzY0LjQyMzA1OCwgInVzZXJfcm9sZSI6ICIwIiwgInVzZXJfaXAiOiAiMTI3LjAuMC4xIiwgInNhbHQiOiAiNTk4N2JiMGVkNDZiOWFiM2FhMTM5OTU4IiwgImVtYWlsIjogImxpdmVub3doeUAxMjYuY29tIn05naNMXbMuExBxbXkH_Tvi'},
+	   data:{
+      
+	   },
+	   success: function(msg){
+      window.log
+	     console.log( msg );
+	   }
+
+	});
+}
+   let o = {
+    name:"zs",
+    ega:12,
+    eat:"apple"
+   };
+   let n = Object.keys(o);
+   console.log(n);
+   console.log(true == 0);
+
+   const messageTypes = [
+      'userJoined',
+      'userLeft',
+      'joinRequested',
+      'usersRequested',
+      'userStartedTyping',
+      'userStoppedTyping',
+      'messageAdded',
+      'userRefreshed'
+    ].reduce((accum, msg) => {
+      accum[ msg ] = msg
+      return accum
+    },{name:1})
+    console.log(messageTypes)
+
+    const array = [1,2,3,4].reduce(function(){
+       return  
+    },{})
+    function a(){
+        let d= document.getElementById("a");
+        console.log(d.scrollHeight);
+      }
+    window.onload=function(){
+      function a(){
+        let d= document.getElementById("a");
+        console.log(d.scrollHeight);
+      }
+    }
+	</script>
+</head>
+<body>
+  <div id="a" style="width:400px;height:200px;overflow:auto;border:1px solid #333;">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+  <input type="button" value="click" onclick = a() />
+	<form action="http://0.0.0.0:8081/oauth/relategithub" method="POST" >
+		<p>客户名称: <input type="text" name="user_name" style="width: 300px" /></p>
+		<p>客户电话: <input type="text" name="password" style="width: 300px" /></p>
+		<p><input type="submit" value="提交" /></p>
+	</form>
+
+  <button onclick=ddd()> sss </button>
+
+
+	
+</body>
+</html>

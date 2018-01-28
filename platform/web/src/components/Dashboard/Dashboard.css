@@ -1,0 +1,241 @@
+
+.root{}
+
+.p1List >li{
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.p1Box{
+  display: inline-block;
+  background: #f3f4f9;
+  border-radius: .4em;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  /*border: 1px solid #57c8f2;*/
+  cursor: pointer;
+}
+
+.p1BoxLeft{
+  float: left;
+  text-align: center;
+  /*background: #57c8f2;*/
+  padding: 30px 25px;
+  height: 115px;
+  box-sizing: border-box;
+}
+.p1BoxLeft > span{
+   display: block;
+   margin: 15px auto;
+   font-size: 40px;
+   color: white;
+ }
+
+.p1BoxRight{
+  display: inline-block;
+  padding: 5px 20px;
+  height: 115px;
+  box-sizing: border-box;
+}
+.p1BoxRight>span{
+  color:#333;
+}
+.p1BoxRightNum{
+  font-style: normal;
+  font-size: 38px;
+  margin-right: 5px;
+}
+.p1BoxRightTxt{
+  margin: 15px 0 10px ;
+  font-size: 18px;
+  color:#333;
+}
+.p1BoxRightTxt>i{
+   font-size: 12px;
+   color: #b5b5b5;
+   margin-left: 5px;
+ }
+.p1BoxDescTxt{
+  color: #b5b5b5;
+  font-style: italic;
+  display: inline-block;
+  margin-top: 10px;
+}
+.p1BoxNewSvcTip{
+  display: block;
+  margin: 0 !important;
+}
+
+.row{
+  position: relative;
+}
+
+.accountInfo{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+}
+.accountInfoBody{
+  border-bottom: 1px dashed #ccc;
+  padding: 15px;
+  margin: 0 -15px -15px;
+}
+
+.accountInfoBody:first-child{
+  margin-top: -15px;
+}
+.accountInfoBody:last-child{
+  border-bottom: 0;
+}
+.accountInfoSubT{
+  color: #ccc;
+}
+.accountInfoBalance{
+  margin-top: 5px;
+}
+.accountInfoBusiness{
+  font-size: 16px;
+  margin: 20px 0 5px 0;
+}
+.accountInfoBalance>button{
+   float: right;
+   margin-top: 7px;
+ }
+.accountInfoBalance:after{
+   clear: both;
+ }
+.accountInfoMoney{
+  font-size: 32px;
+  color: #fe6137;
+  margin-right: 5px;
+}
+
+.monitor{
+  margin-right: 260px;
+}
+
+.chart{
+  width: 100%;
+  height: 300px;
+}
+.resourceBox{
+  padding:0 20px 30px 20px;
+  margin-top:-15px;
+}
+.resourceItem{
+  position: relative;
+  border-bottom:1px solid #e8e8e8;
+  padding:15px 0;
+}
+.resourceItem:last-child{
+  border:0;
+}
+.resourceItem:nth-child(2) .resourceHd p span{
+  color:#ff6c60;
+}
+.resourceItem:nth-child(3) .resourceHd p span{
+  color:#2ecc71;
+}
+.resourceItem:nth-child(1) .resourceLeft>p>span{
+  color:#56c8f2;
+}
+.resourceItem:nth-child(2) .resourceLeft>p>span{
+  color:#ff6c60;
+}
+.resourceItem:nth-child(3) .resourceLeft>p>span{
+  color:#2ecc71;
+}
+.resourceLeft{
+  width:240px;
+  height:155px;
+  position: absolute;
+  top:10px;
+  left:0;
+  overflow:hidden;
+}
+.resourceLeft:after{
+  content:"";
+  display:inline-block;
+  width:1px;
+  background:#e8e8e8;
+  height:93px;
+  position: absolute;
+  right:0;
+  top:25px;
+}
+.resourceLeft>p{
+  position: absolute;
+  color:#333;
+  display: inline-block;
+  z-index:2;
+  top:75px;
+  left:24px;
+  text-align:center;
+  min-width:98px;
+}
+.resourceLeft>p>span{
+  font-size:20px;
+}
+.hcItem{
+  width:125px;
+  height:125px;
+  margin-top:20px;
+}
+.resourceRight{
+  margin-left:240px;
+  height:155px;
+  padding-left:70px;
+  padding-right:60px;
+}
+.resourceHd{
+  padding-bottom:10px;
+  border-bottom:1px solid #e8e8e8;
+}
+.resourceHd p{
+  color:#666;
+  padding-top:7px;
+}
+.resourceHd p span{
+  font-size:18px;
+  color:#56c8f2;
+}
+.resourceBd{
+}
+.resourceInfo{
+  width:35%;
+  display:inline-block;
+  position: relative;
+  padding-top:15px;
+  text-align: center;
+}
+.resourceInfo:after{
+  content: '';
+  width:1px;
+  height:58px;
+  position: absolute;
+  top:14px;
+  right:0;
+  background:#e8e8e8;
+}
+.resourceInfo:first-child{
+  text-align: left;
+  width:32%;
+}
+.resourceInfo:last-child{
+  width:30%;
+}
+.resourceInfo:last-child:after{
+  display:none;
+}
+.resourceInfo p{
+  color:#666;
+}
+.resourceInfo p:last-child{
+  color:#333;
+}
+.resourceInfo p span{
+  font-size:28px;
+}
+

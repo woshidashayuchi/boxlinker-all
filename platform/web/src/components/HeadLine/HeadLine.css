@@ -1,0 +1,36 @@
+.hlBox{
+  height:40px;
+  padding-left:15px;
+  position: relative;
+}
+.hlBox:before{
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height:35px;
+  width:5px;
+  background:#2dafdf;
+  left:0;
+  top:2px;
+}
+.hlHd{
+  height:18px;
+  line-height:18px;
+}
+.hlHd span{
+  vertical-align: top;
+}
+.hlFirstTitle{
+  font-size:16px;
+  color:#333;
+}
+.hlSecondTitle{
+  margin-left:10px;
+  font-size:12px;
+  color:#999;
+}
+.hlPresent{
+  margin-top:5px;
+  font-size:12px;
+  color:#666;
+}

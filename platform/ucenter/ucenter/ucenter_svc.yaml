@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: List
+items:
+# ucenter config
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ucenter
+    namespace: boxlinker
+    labels:
+      name: ucenter
+    annotations:
+      serviceloadbalancer/lb.http: ucenter.boxlinker.com:8001
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    ports:
+    - port: 8001
+      targetPort: 8001
+
+- apiVersion: v1
+  kind: Endpoints
+  metadata:
+    name: ucenter
+    namespace: boxlinker
+  subsets:
+    - addresses:
+      - ip: 172.20.1.7
+      ports:
+        - port: 8001

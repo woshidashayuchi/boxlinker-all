@@ -1,0 +1,86 @@
+.csItem{
+  width:100px;
+  height:103px;
+  background:#f2f4f8;
+  border-radius:4px 4px 7px 7px;
+  border-top:3px solid #f2f4f8;
+  border-bottom:3px solid #d7c698;
+  display:inline-block;
+  margin-right:42px;
+  cursor:pointer;
+}
+.csItem:hover{
+  box-shadow:0 3px 5px rgba(215,198,152,.35);
+}
+.csSize{
+  height:59px;
+  line-height:59px;
+  border-bottom:1px solid #ccc;
+  margin:0 22px;
+  text-align: center;
+  font-size:35px;
+}
+.csSize span{
+  font-size:30px;
+}
+.csUnit{
+  margin-top:10px;
+  text-align: center;
+  color:#666;
+}
+.csItem:nth-child(2){
+  border-bottom-color:#5eafce;
+}
+.csItem:nth-child(2):hover{
+  box-shadow:0 3px 5px rgba(39,154,197,.35);
+}
+.csItem:nth-child(3){
+  border-bottom-color:#a8ce6b;
+}
+.csItem:nth-child(3):hover{
+  box-shadow:0 3px 5px rgba(130,165,75,.35);
+}
+.csItem:nth-child(4){
+  border-bottom-color:#889bcb;
+}
+.csItem:nth-child(4):hover{
+  box-shadow:0 3px 5px rgba(94,117,174,.35);
+}
+.csItem:nth-child(5){
+  border-bottom-color:#ef6256;
+}
+.csItem:nth-child(5):hover{
+  box-shadow:0 3px 5px rgba(168,91,85,.35);
+}
+.csActive{
+  background:#c8b88f;
+  border-top:3px solid #a4873e;
+  color:#fff;
+  border-bottom:0;
+}
+.csActive .csUnit{
+  color:#fff;
+}
+.csActive .csSize{
+  border-color:#fff;
+}
+.csUnit span{
+  font-size:12px;
+}
+.csItem:nth-child(2).csActive{
+  border-color:#439ec1;
+  background:#5eafce;
+}
+.csItem:nth-child(3).csActive{
+  border-color:#80a643;
+  background:#a8ce6b;
+}
+.csItem:nth-child(4).csActive{
+  border-color:#4666b7;
+  background:#889bcb;
+}
+.csItem:nth-child(5).csActive{
+  border-color:#c34439;
+  background:#ef6256;
+}
+

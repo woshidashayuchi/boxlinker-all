@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: database03
+    namespace: boxlinker
+    labels:
+        name: database03
+spec:
+    selector:
+        name: database03
+    ports:
+    - name: mariadb
+      port: 3306
+      targetPort: 3306
+    - name: galera
+      port: 4567
+      targetPort: 4567

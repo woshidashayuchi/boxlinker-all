@@ -1,0 +1,92 @@
+{
+    "apiVersion": "v1",
+    "kind": "ReplicationController",
+    "metadata": {
+        "name": "database01",
+        "namespace": "boxlinker",
+        "labels": 
+         {
+          "name": "database01"
+         }
+    },
+    "spec": {
+        "replicas": 1,
+        "selector": {
+            "name": "database01"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "name": "database01",
+                    "db": "db-cluster"
+                }
+            },
+            "spec": {
+                "nodeSelector" : {
+                    "role": "user"
+                    },
+                "imagePullSecrets": [ 
+                    {
+                        "name": "registry-key"
+                    } 
+                ],
+                "containers": [
+                    {
+                        "name": "mariadb01",
+                        "imagePullPolicy": "Always",
+                        "image": "index.boxlinker.com/boxlinker/centos-mariadb:cluster-node-1.1.0",
+                        "ports": [
+                            {
+                                "containerPort": 3306,
+                                "containerPort": 4567
+                            }
+                        ],
+                        "env": [
+                            {
+                                "name": "database01",
+                                "value": "database01"
+                            },
+                            {
+                                "name": "database02",
+                                "value": "database02"
+                            },
+                            {
+                                "name": "database03",
+                                "value": "database03"
+                            },
+                            {
+                                "name": "mysql_root_password",
+                                "value": "boxlinker"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/database",
+                                "name": "rbddisk"
+                            }
+                        ]
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "rbddisk",
+                        "rbd": {
+                            "monitors": [
+                                "192.168.1.5:5000",
+                                "192.168.1.8:5000",
+                                "192.168.1.9:5000"
+                            ],
+                            "pool": "pool_hdd",
+                            "image": "database01disk01",
+                            "user": "admin",
+                            "keyring": "/etc/ceph/keyring",
+                            "secretRef": null,
+                            "fsType": "xfs",
+                            "readOnly": false
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

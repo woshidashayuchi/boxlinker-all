@@ -1,0 +1,51 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  secret: asecretforlocaldevelopment
+  headers:
+    X-Content-Type-Options: [nosniff]
+auth:
+  token:
+    issuer: "Auth Service"
+    realm: "https://registrytoken.boxlinker.com/api/v1.0/registry/token"
+#     docker client 端去访问,不是registry
+    service: "Docker registry"
+    rootcertbundle: /ssl/ca.crt
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+
+# 镜像通知;以上配置均不需要修改
+notifications:
+  endpoints:
+  - name: notice
+    disabled: false
+    headers:
+        Authorization: [rolling-update-headers-no-ti]
+    #url: http://101.200.45.76:8843/api/v1.0/registry/notifications
+    url: https://registrytoken.boxlinker.com/api/v1.0/registry/notifications
+    # docker registry 之间访问,和 token 不一样
+    #url: http://authtoken:8001/api/v1.0/registry/notifications
+    timeout: 3000ms
+    threshold: 5
+    backoff: 1s
+  - name: rolling-update
+    headers:
+        Authorization: [rolling-update-headers-no-ti]
+    disabled: false
+    url: https://rollup.boxlinker.com/api/v1.0/application/services/rollings
+#    url: https://rolling-update.boxlinker.com
+#    url: http://172.20.1.18:8080  #开发环境,使用ip+port; 解决 docker register 内部bug
+    timeout: 3000ms
+    threshold: 5
+    backoff: 1s

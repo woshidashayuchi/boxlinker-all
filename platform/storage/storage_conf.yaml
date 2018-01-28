@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: List
+items:
+# storage config
+
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: storage-api
+    namespace: boxlinker
+    labels:
+      name: storage-api
+      rc-krud: "boxlinker_storage"
+  spec:
+    replicas: 1
+    selector:
+      name: storage-api
+    template:
+      metadata:
+        labels:
+          name: storage-api
+          logs: boxlinker-storage-api
+      spec:
+        nodeSelector:
+          role: system
+        imagePullSecrets:
+        - name: registry-key
+        containers:
+        - name: storage-api
+          imagePullPolicy: Always
+          image: index.boxlinker.com/boxlinker/storage:1.0.1
+          ports:
+          - containerPort: 8001
+          env:
+          - name: DB_SERVER01
+            value: database
+          - name: DB_SERVER02
+            value: database
+          - name: MQ_SERVER01
+            value: rabbitmq
+          - name: MQ_SERVER02
+            value: rabbitmq
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: storage-api
+    namespace: boxlinker
+    labels:
+      name: storage-api
+    annotations:
+      serviceloadbalancer/lb.http: storage.boxlinker.com:8001
+      serviceloadbalancer/lb.node: main
+      serviceloadbalancer/lb.sslTerm: "true"
+  spec:
+    selector:
+      name: storage-api
+    sessionAffinity: ClientIP
+    ports:
+    - name: rest-api
+      port: 8001
+      targetPort: 8001

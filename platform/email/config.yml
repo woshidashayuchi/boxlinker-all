@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: send-email
+    namespace: boxlinker
+    labels:
+      component: send-email
+    annotations:
+      serviceloadbalancer/lb.http: "send-email.boxlinker.com:3000"
+      serviceloadbalancer/lb.node: "main"
+  spec:
+    selector:
+      component: send-email
+    ports:
+    - port: 3000
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: send-email
+    namespace: boxlinker
+    labels:
+      component: send-email
+      rc-krud: "boxlinker_send-email"
+  spec:
+    replicas: 1
+    selector:
+      component: send-email
+    template:
+      metadata:
+        name: send-email
+        labels:
+          component: send-email
+      spec:
+        nodeSelector:
+          role: loadbalancer
+        imagePullSecrets:
+        - name: RegistryWeb-key
+        containers:
+        - name: send-email
+          image: index.boxlinker.com/boxlinker/send-email:1.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+            name: pro

@@ -1,0 +1,102 @@
+/**
+ * React Starter Kit (https://www.reactstarterkit.com/)
+ *
+ * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+import React, { Component, PropTypes } from 'react';
+import emptyFunction from 'fbjs/lib/emptyFunction';
+import { connect } from 'react-redux';
+import cx from 'classnames';
+import {toggledSidebar} from '../../actions/toggleSidebar';
+// import s from './App.css';
+// import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import Header from '../Header';
+import Sidebar from '../Sidebar';
+import Breadcrumb from '../Breadcrumb';
+
+import {Provider} from 'react-redux'
+
+class App extends Component {
+
+  static propTypes = {
+    toggleSidebar: PropTypes.bool.isRequired,
+    context: PropTypes.shape({
+      createHref: PropTypes.func.isRequired,
+      store: PropTypes.object.isRequired,
+      insertCss: PropTypes.func,
+      setTitle: PropTypes.func,
+      setMeta: PropTypes.func,
+    }),
+    children: PropTypes.element.isRequired,
+    error: PropTypes.object,
+  };
+
+  static childContextTypes = {
+    createHref: PropTypes.func.isRequired,
+    insertCss: PropTypes.func.isRequired,
+    setTitle: PropTypes.func.isRequired,
+    setMeta: PropTypes.func.isRequired,
+  };
+
+  getChildContext() {
+    const context = this.props.context;
+    return {
+      createHref: context.createHref,
+      insertCss: context.insertCss || emptyFunction,
+      setTitle: context.setTitle || emptyFunction,
+      setMeta: context.setMeta || emptyFunction,
+    };
+  }
+
+  componentWillMount() {
+    // const { insertCss } = this.props.context;
+    // this.removeCss = insertCss(s);
+  }
+
+  componentWillUnmount() {
+    // this.removeCss();
+  }
+
+  render() {
+    if (this.props.error) {
+      return this.props.children;
+    }
+    const { toggleSidebar } = this.props;
+    const { dispatch } = this.props;
+    const store = this.props.context.store;
+    return (
+      <Provider store={store}>
+        <div className={cx("app",toggleSidebar?'':'sidebar-close')}>
+          <Header onToggle={flag => {dispatch(toggledSidebar(flag))}}/>
+          <Sidebar isOpen={toggleSidebar}
+                   onToggle=""
+          />
+          <div className="containerPack">
+            <div className="containerInner">
+              <Breadcrumb />
+              <div className="containerBody">
+                {this.props.children}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Provider>
+    )
+  }
+
+}
+
+export default App;
+
+// function select(state){
+//   const {toggleSidebar} = state;
+//   return {
+//     toggleSidebar
+//   }
+// }
+//
+// export default connect(select)(App);

@@ -1,0 +1,118 @@
+/**
+ * React Starter Kit (https://www.reactstarterkit.com/)
+ *
+ * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+.root {
+  position: fixed;
+  left:0;
+  top:0;
+  right:0;
+  z-index: 1000;
+  background-color: #132338;
+}
+
+.container {
+  margin: 0 30px;
+  padding: 17px 0;
+}
+
+.brand {
+  text-decoration: none;
+  font-size: 1.15em; /* ~28px */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 180px;
+  line-height: 60px;
+  text-align: center;
+  background-color: white;
+}
+
+.brandTxt {
+  margin-left: 10px;
+}
+
+.nav {
+  margin-top: 0px;
+  margin-left: 150px;
+}
+.nav:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+
+
+.navBar {
+  float: left;
+}
+.navBar>li {
+  display: inline-block;
+  margin-right: 20px;
+}
+.navBarRight {
+  float: right;
+}
+
+.link {
+  display: inline-block;
+  padding: 3px 8px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.link:active,.link:focus {
+  color: #2598e1;
+}
+
+.link:hover {
+  color: #09c8f4;
+}
+.link:visited{
+  color: #fff;
+}
+
+.highlight {
+  margin-right: 8px;
+  margin-left: 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, .15);
+  color: #fff;
+}
+
+.highlight:hover {
+  background: rgba(0, 0, 0, .3);
+}
+
+.spacer {
+  color: rgba(255, 255, 255, .3);
+}
+
+
+
+.banner {
+  text-align: center;
+}
+
+.bannerTitle {
+  margin: 0;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 4em;
+  line-height: 1em;
+}
+
+.bannerDesc {
+  padding: 0;
+  color: rgba(255, 255, 255, .5);
+  font-size: 1.25em;
+  margin: 0;
+}

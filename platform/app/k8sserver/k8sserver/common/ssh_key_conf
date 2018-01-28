@@ -1,0 +1,25 @@
+
+expect_install()
+{
+    rpm_check=$(rpm -qa | grep 'expect' | wc -l)
+    if [ $rpm_check -eq 0 ]; then
+        yum install -y expect
+    fi
+}
+
+
+ssh_key_conf()
+{
+    local host_ip=$1
+    local password=$2
+
+    if [ ! -f /root/.ssh/id_dsa.pub ]; then
+        ssh-keygen -t dsa -P '' -f /root/.ssh/id_dsa &> /dev/null
+    fi
+
+    cwd=$0
+    cwd_path=${cwd%/*}
+
+    "$cwd_path"/ssh_copy_id "$host_ip" "$password" > /dev/null
+}
+
